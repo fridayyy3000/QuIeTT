@@ -1,4 +1,4 @@
-# QUIETT — Code Release
+# QUIETT: Query Independent Table Transformation For Robust Reasoning
 
 **QUIETT** (**QU**erying **I**mperfect **T**ables **T**hrough **T**ransformation) is a four-stage pipeline that automatically detects quality issues in raw HTML/CSV tables, generates and executes a canonical transformation plan, and answers natural-language questions over the repaired table using chain-of-thought–guided SQL.
 
