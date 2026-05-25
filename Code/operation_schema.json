@@ -1,0 +1,119 @@
+{
+  "operations": {
+    "add_row_id": {
+      "description": "Adds a sequential integer row-ID column (1-based) as the first column.",
+      "required": [],
+      "optional": ["out"]
+    },
+    "rename": {
+      "description": "Renames one or more columns according to a mapping.",
+      "required": ["col_map"],
+      "optional": []
+    },
+    "select": {
+      "description": "Keeps only the listed columns in the specified order (final projection step).",
+      "required": ["cols"],
+      "optional": []
+    },
+    "parse_date_text": {
+      "description": "Parses a free-text date column into a canonical ISO-8601 date and optional year/month/day parts.",
+      "required": ["col", "out_date"],
+      "optional": ["out_parts", "formats"]
+    },
+    "parse_number": {
+      "description": "Extracts a numeric value from a text column, stripping commas, currency symbols and units.",
+      "required": ["col", "out_value"],
+      "optional": ["out_unit", "pattern"]
+    },
+    "extract_regex": {
+      "description": "Applies a regex to a column and writes each capture group to a new column.",
+      "required": ["col", "pattern", "out_groups"],
+      "optional": []
+    },
+    "derive_conditional": {
+      "description": "Creates a new column whose value is determined by evaluating a list of conditions in order.",
+      "required": ["out", "conditions"],
+      "optional": ["default"]
+    },
+    "derive_math": {
+      "description": "Creates a new column using a mathematical or string-length expression over existing columns.",
+      "required": ["out", "expr"],
+      "optional": []
+    },
+    "map_values": {
+      "description": "Replaces values in a column using an explicit lookup table, writing the result to a new column.",
+      "required": ["col", "mapping", "out"],
+      "optional": ["default"]
+    },
+    "replace_value": {
+      "description": "Replaces exact occurrences of old_value with new_value in a column (in-place).",
+      "required": ["col", "old_value", "new_value"],
+      "optional": []
+    },
+    "replace_string": {
+      "description": "Applies a regex substitution to a column. Use 'writes' to output to a new column without modifying the source.",
+      "required": ["col", "pattern", "replacement"],
+      "optional": ["regex", "writes"]
+    },
+    "cast_column": {
+      "description": "Casts a column to a given dtype (int, float, str, bool). Use 'out' to rename the result.",
+      "required": ["col", "dtype"],
+      "optional": ["out"]
+    },
+    "fillna_static": {
+      "description": "Fills NaN values in a column with a fixed scalar value.",
+      "required": ["col", "value"],
+      "optional": []
+    },
+    "fillna_dynamic": {
+      "description": "Fills NaN values using a strategy ('ffill', 'bfill', or the value from another column).",
+      "required": ["col", "method"],
+      "optional": ["source_col"]
+    },
+    "combine_columns": {
+      "description": "Concatenates several columns into one new column using a separator string.",
+      "required": ["cols", "out", "sep"],
+      "optional": []
+    },
+    "trim_whitespace": {
+      "description": "Strips leading/trailing whitespace from one or more string columns.",
+      "required": ["cols"],
+      "optional": ["out"]
+    },
+    "filter_rows": {
+      "description": "Removes rows that do not satisfy a boolean condition expression.",
+      "required": ["condition"],
+      "optional": []
+    },
+    "sort": {
+      "description": "Sorts the DataFrame by one or more columns.",
+      "required": ["by"],
+      "optional": ["ascending"]
+    },
+    "deduplicate_rows": {
+      "description": "Removes duplicate rows, optionally scoped to a subset of columns.",
+      "required": [],
+      "optional": ["subset", "keep"]
+    },
+    "bin_numeric": {
+      "description": "Discretises a numeric column into labelled bins.",
+      "required": ["col", "bins", "labels", "out"],
+      "optional": []
+    },
+    "one_hot": {
+      "description": "One-hot-encodes a categorical column, producing one boolean column per unique value.",
+      "required": ["col"],
+      "optional": ["prefix"]
+    },
+    "split_multi_value": {
+      "description": "Splits a multi-value cell (e.g. newline- or comma-separated) into individual values. Use explode=true to expand each value into its own row.",
+      "required": ["col", "separators", "value_out"],
+      "optional": ["explode", "count_out"]
+    },
+    "custom": {
+      "description": "Fallback for operations that cannot be expressed with the schema; the LLM generates Python code.",
+      "required": ["description", "out_cols"],
+      "optional": ["code_hint"]
+    }
+  }
+}
