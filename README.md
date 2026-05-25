@@ -7,7 +7,7 @@
 ## Repository Structure
 
 ```
-quiett_release/
+Code/
 ├── pipeline_steps_1_2.py   # Steps 1 & 2 — issue detection + transformation plan generation
 ├── pipeline_step3.py        # Step 3  — deterministic plan execution
 ├── pipeline_step4.py        # Step 4  — CoT-guided SQL question answering
@@ -15,9 +15,9 @@ quiett_release/
 ├── validate_plan.py         # JSON schema validator for Step 2 output plans
 ├── operation_schema.json    # Formal operator specification
 ├── run_pipeline.py          # Batch orchestrator for dataset-level evaluation
-├── evaluate.py              # Standalone Exact Match + token-F1 scorer
 ├── models.json.example      # Model configuration template
-└── requirements.txt
+evaluate.py              # Standalone Exact Match + token-F1 scorer
+requirements.txt
 ```
 
 ---
@@ -225,15 +225,4 @@ All settings match the paper unless noted.
 
 ---
 
-## Citation
-
-If you use this code, please cite our paper:
-
-```bibtex
-@inproceedings{quiett2025,
-  title     = {{QUIETT}: {QU}erying {I}mperfect {T}ables {T}hrough {T}ransformation},
-  booktitle = {Proceedings of EMNLP},
-  year      = {2025}
-}
-```
 
