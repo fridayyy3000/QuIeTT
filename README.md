@@ -16,6 +16,8 @@ Code/
 ├── operation_schema.json    # Formal operator specification
 ├── run_pipeline.py          # Batch orchestrator for dataset-level evaluation
 ├── models.json.example      # Model configuration template
+data_preprocessing/
+├── flattening_tables.py     # Preprocessing for hierarchical tables (e.g. HiTab) → flat CSVs
 evaluate.py              # Standalone Exact Match + token-F1 scorer
 requirements.txt
 ```
@@ -111,6 +113,52 @@ You can also use `"csv_path"` or `"markdown_path"` instead of embedding the cont
 
 **Column descriptions** (optional): provide a JSON file at `COL_DESC_PATH` keyed by `table_id`
 to supply human-readable column context to the LLM.
+
+---
+
+## Data Preprocessing — Hierarchical Tables
+
+QUIETT expects flat CSV tables as input. If your dataset uses a hierarchical table format
+(e.g. **HiTab**, where row/column headers form a multi-level tree), you must flatten the
+tables first using the provided preprocessing script.
+
+### When to use this
+
+Use `data_preprocessing/flattening_tables.py` whenever your tables have:
+- Multi-level row headers (e.g. region → country → player)
+- Multi-level column headers (e.g. year → competition → metric)
+- A JSON structure with `top_root` / `left_root` hierarchy trees and a `data` cell matrix
+
+This covers datasets such as HiTab and any other table corpus that follows the same
+hierarchical JSON schema.
+
+### Usage
+
+```bash
+python data_preprocessing/flattening_tables.py \
+  --input  /path/to/hierarchical_json_tables \
+  --output /path/to/flattened_csvs
+```
+
+Each `.json` file in `--input` is flattened into a corresponding `.csv` file in `--output`.
+Left-hierarchy levels are stored as `row_level_0`, `row_level_1`, … columns; top-hierarchy
+paths become the column headers.
+
+Once flattening is complete, point `DATASET_DIR` at the output folder and run QUIETT as normal.
+
+### Full workflow for hierarchical datasets
+
+```bash
+# Step 0 — flatten hierarchical tables
+python data_preprocessing/flattening_tables.py \
+  --input  /path/to/hitab/test_tables \
+  --output /path/to/flattened_csvs
+
+# Step 1–4 — run QUIETT on the flattened CSVs
+export DATASET_DIR=/path/to/flattened_csvs
+export OUTPUT_DIR=/path/to/output
+python Code/run_pipeline.py --model my_model
+```
 
 ---
 
