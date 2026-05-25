@@ -1,0 +1,16 @@
+{
+  "gemini-flash": {
+    "model_id":    "gemini-2.5-flash",
+    "api_type":    "sdk",
+    "project":     "YOUR_GCP_PROJECT_ID",
+    "location":    "us-central1",
+    "description": "Gemini 2.5 Flash via Google GenAI SDK"
+  },
+  "openai-compat": {
+    "model_id":    "your-model-id",
+    "api_type":    "openapi",
+    "project":     "YOUR_GCP_PROJECT_ID",
+    "location":    "us-central1",
+    "description": "Any OpenAI-compatible REST endpoint"
+  }
+}
