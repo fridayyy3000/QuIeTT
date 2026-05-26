@@ -4,6 +4,12 @@
 
 ---
 
+## Overview
+
+![QuIeTT Overview](assets/Quiett_Pipeline.pdf)
+
+---
+
 ## Repository Structure
 
 ```
