@@ -427,11 +427,43 @@ def run_transformation_steps(table_id: str, csv_path: Path, run_dir: Path, col_m
     execution_info = {
         'step3_started': datetime.now().isoformat(),
         'step3_success': False,
-        'step3_error': None
+        'step3_error': None,
+        'plan_validation_retry': False,
     }
     
+    def _run_step3():
+        return subprocess.run(cmd, capture_output=True, text=True, env=env, timeout=300)
+    
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, env=env, timeout=300)
+        proc = _run_step3()
+        
+        # ── Paper Algorithm 1: 1 retry on plan-validation failure ────────
+        validation_errors_path = run_dir / "validation_errors.json"
+        if validation_errors_path.exists():
+            execution_info['plan_validation_retry'] = True
+            # Discard failed plan + validation error report; regenerate plan once
+            try:
+                plan_json_path.unlink(missing_ok=True)
+                validation_errors_path.unlink(missing_ok=True)
+            except Exception:
+                pass
+            
+            # Re-run Step 1 & 2 to produce a fresh plan
+            retry_cmd = [
+                sys.executable,
+                str(SCRIPT_DIR / 'pipeline_steps_1_2.py'),
+                str(csv_path),
+                str(col_meta_path),
+            ]
+            try:
+                subprocess.run(retry_cmd, capture_output=True, text=True, env=env, timeout=300)
+            except subprocess.TimeoutExpired:
+                pass
+            
+            # Re-execute Step 3 against the regenerated plan
+            if plan_json_path.exists():
+                proc = _run_step3()
+        
         if final_csv.exists():
             result['success'] = True
             result['final_csv'] = final_csv
