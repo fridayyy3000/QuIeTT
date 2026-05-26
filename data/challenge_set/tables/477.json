@@ -1,0 +1,5 @@
+{
+  "table_id": "477",
+  "table_title": "Serial ATA",
+  "markdown": "# Serial ATA\n\n|  |  | Year created | Supersedes | Speed | Style | Hotplugging interface | External interface |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n| 0 |  | 2000 | Parallel ATA (PATA) | 1.5, 3.0, 6.0 and 16 Gbit/s | Serial | Yes[1] | Optional (eSATA) |"
+}

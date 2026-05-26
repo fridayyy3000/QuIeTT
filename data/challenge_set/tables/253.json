@@ -1,0 +1,5 @@
+{
+  "table_id": "253",
+  "table_title": "JEA Northside Generating Station",
+  "markdown": "| Pollutant | Units | Emission Standard | Coal-fired | Petroleum Coke-fired |\n| --- | --- | --- | --- | --- |\n| SO2 | lb/MMBTU | ≤ 0.15 | 0.0−0.04 | 0.03−0.13 |\n| NOx | lb/MMBTU | ≤ 0.09 | 0.04−0.06 | 0.02 |\n| Solid particulate | lb/MMBTU | ≤ 0.011 | 0.004 | 0.007 |\n| PM10 | lb/MMBTU | ≤ 0.011 | 0.006 | 0.004 |\n| SO3 | lb/hour | ≤ 1.1 | 0.43 | 0.0 |\n| Fluoride | lb/MMBTU | ≤ 1.57×10−4 | 1.06×10−4 | 0.95×10−4 |\n| Lead | lb/MMBTU | ≤ 2.6×10−5 | 0.56×10−5 | 0.59×10−5 |\n| Mercury | lb/MMBTU | ≤ 1.05×10−5 | 0.095×10−5 | 0.028×10−5 |"
+}
