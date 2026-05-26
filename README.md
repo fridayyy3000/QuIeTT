@@ -6,7 +6,7 @@
 
 ## Overview
 
-![QuIeTT Overview](assets/Quiett_Pipeline.pdf)
+![QuIeTT Overview](assets/Quiett_Pipeline.png)
 
 ---
 
