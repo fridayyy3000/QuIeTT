@@ -34,7 +34,13 @@ with open("data/challenge_set/questions.jsonl") as f:
 
 ## Dataset Statistics
 
-- Tables   : 529
-- Questions: 2,500
-- Questions per table: mean 4.7 / median 5 / max 7
-- Sources  : WikiTQ and NQ-Tables
+| Statistic | Values | Table Dimension |
+|---|---|---|
+| Total tables | 529 | Mean: (20, 11) |
+| Total questions | 2,500 | Median: (8, 8) |
+| Questions per table (mean / median / max) | 4 / 5 / 7 | Min: (1, 1) |
+| | | Max: (380, 76) |
+
+The set comprises 2,500 questions over 529 tables. Tuple-valued entries in the Table Dimension column report (rows, columns); the wide size range reflects the structural diversity the challenge set targets.
+
+- Sources: WikiTQ and NQ-Tables
