@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store
+
+# Local model config (may contain API keys or private paths)
+# Use models.json.example as the template
+Code/models.json
+
+# Internal release artifacts (not for public release)
+internal_id_map.json
+challenge_set_assembled/
+
+# Environment / secrets
+.env
+.env.*
