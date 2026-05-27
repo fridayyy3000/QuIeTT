@@ -27,7 +27,7 @@ class ValidationError:
 
 
 class PlanValidationResult:
-    """Result of plan validation."""`
+    """Result of plan validation."""
     def __init__(self):
         self.errors: List[ValidationError] = []
         self.warnings: List[ValidationError] = []
