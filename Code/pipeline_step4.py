@@ -294,7 +294,7 @@ def analyze_and_generate_sql(table_name: str, df: pd.DataFrame, question: str) -
         question=question
     )
     try:
-        raw_output = generate_with_backoff(prompt, temperature=0.1)
+        raw_output = generate_with_backoff(prompt, temperature=0.2)
         result = {"raw_output": raw_output, "reasoning": "", "sql": ""}
 
         # Extract reasoning

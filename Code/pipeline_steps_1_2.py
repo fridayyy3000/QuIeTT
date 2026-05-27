@@ -1036,14 +1036,14 @@ def main():
 
     print(f"[INFO] Using CSV:        {input_csv}")
     print(f"[INFO] Using meta:       {col_meta_path}")
-    print(f"[INFO] Using GPT OSS 120B: {MODEL_ID}")
+    print(f"[INFO] Using model: {MODEL_ID}")
 
     if not input_csv.exists():
         print(f"[ERR] CSV file not found: {input_csv}")
         sys.exit(1)
 
     # Create output directory
-    pipeline_root_str = os.environ.get("PIPELINE_ROOT_OVERRIDE", str(Path(__file__).parent / "wikitq_gptoss120b_output"))
+    pipeline_root_str = os.environ.get("PIPELINE_ROOT_OVERRIDE", str(Path(__file__).parent / "pipeline_output"))
     pipeline_root = Path(pipeline_root_str)
     
     out_dir = pipeline_root / input_csv.stem
@@ -1079,7 +1079,7 @@ def main():
     print(f"[INFO] Columns: {list(df.columns)}")
 
     # STEP 1
-    print("[INFO] Calling GPT OSS 120B for STEP 1 (questions/issues)...")
+    print(f"[INFO] Calling {MODEL_ID} for STEP 1 (questions/issues)...")
 
     step1_user_block = f"""TABLE_TITLE: {table_title}
 
@@ -1134,7 +1134,7 @@ AUTO_STATS (JSON):
         issues = []  # Ensure issues is initialized on error
 
     # STEP 2
-    print("[INFO] Calling GPT OSS 120B for STEP 2 (planner)...")
+    print(f"[INFO] Calling {MODEL_ID} for STEP 2 (planner)...")
 
     if step1_json_text is not None:
         step1_for_step2 = step1_json_text
