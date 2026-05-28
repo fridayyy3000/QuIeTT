@@ -117,7 +117,7 @@ dataset/
 ```
 You can also use `"csv_path"` or `"markdown_path"` instead of embedding the content directly.
 
-**Column descriptions** (optional): provide a JSON file at `COL_DESC_PATH` keyed by `table_id`
+**Column descriptions** (recommended): provide a JSON file at `COL_DESC_PATH` keyed by `table_id`
 to supply human-readable column context to the LLM.
 
 ---
